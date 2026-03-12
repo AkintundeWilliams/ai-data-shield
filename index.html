@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Data Shield — Protect Your Data on AI Platforms</title>
+  <meta name="description" content="AI Data Shield automatically detects and masks sensitive data before you send it to AI platforms like ChatGPT, Claude, and Gemini. One-time purchase, $29.99.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e1a;
+      --surface: #111827;
+      --surface2: #1a2235;
+      --border: #1e2d45;
+      --accent: #00d4ff;
+      --accent2: #0099cc;
+      --text: #e8f0fe;
+      --muted: #6b7ea8;
+      --green: #00e5a0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      z-index: 1;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      background: #33ddff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .price-tag {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+    .price-tag strong { color: var(--green); }
+
+    /* PLATFORMS */
+    .platforms {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .platforms p {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .platform-list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .platform-item {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--muted);
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .platform-item:hover { opacity: 1; color: var(--text); }
+
+    /* FEATURES */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin-bottom: 3.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* HOW IT WORKS */
+    .how-bg {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      counter-reset: steps;
+    }
+
+    .step {
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(0,212,255,0.1);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .step h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* DATA TYPES */
+    .data-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 2rem;
+    }
+
+    .data-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.82rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .data-tag.highlight {
+      background: rgba(0,212,255,0.08);
+      border-color: rgba(0,212,255,0.25);
+      color: var(--accent);
+    }
+
+    /* PRICING */
+    .pricing-card {
+      max-width: 440px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: rgba(0,229,160,0.1);
+      border: 1px solid rgba(0,229,160,0.25);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    .price {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3rem;
+    }
+
+    .price-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .pricing-features li:last-child { border-bottom: none; }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* PRIVACY */
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .privacy-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .privacy-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    .privacy-item h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .privacy-item p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .platform-list { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🛡️ AI Data Shield</div>
+    <a href="#pricing" class="nav-cta">Get it — $29.99</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div>
+      <div class="badge">🔒 Chrome Extension</div>
+      <h1>Your data stays<br><span>yours.</span></h1>
+      <p class="hero-sub">
+        AI Data Shield automatically detects and masks sensitive information before you send it to any AI platform. No leaks. No risk.
+      </p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">🛡️ Get AI Data Shield</a>
+        <a href="#how-it-works" class="btn-secondary">See how it works</a>
+      </div>
+      <p class="price-tag"><strong>$29.99</strong></p>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <div class="platforms">
+    <p>Works on all major AI platforms</p>
+    <div class="platform-list">
+      <span class="platform-item">ChatGPT</span>
+      <span class="platform-item">Claude</span>
+      <span class="platform-item">Gemini</span>
+      <span class="platform-item">Copilot</span>
+      <span class="platform-item">Perplexity</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Everything you need<br>to stay protected</h2>
+    <p class="section-sub">Intelligent detection that works silently in the background — no friction, no interruptions.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Automatic Detection</h3>
+        <p>Instantly identifies sensitive data patterns as you type — emails, phone numbers, credit cards, IBANs, API keys and more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h3>Smart Masking</h3>
+        <p>Replaces real data with realistic placeholders before it reaches the AI. The conversation stays natural and coherent.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Fully Configurable</h3>
+        <p>Toggle individual pattern types on or off. You stay in control of what gets protected and what passes through.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Detection Statistics</h3>
+        <p>See a live count of how many sensitive items have been masked. Know exactly how much AI Data Shield has protected you.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>GDPR Compliant</h3>
+        <p>Built with European privacy standards in mind. All processing is local — your data never leaves your device.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Zero Latency</h3>
+        <p>No server calls, no delays. Detection runs entirely in your browser so there's no impact on your workflow speed.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <p class="section-label">What gets detected</p>
+      <div class="data-types">
+        <span class="data-tag highlight">Email addresses</span>
+        <span class="data-tag highlight">Phone numbers</span>
+        <span class="data-tag highlight">Credit card numbers</span>
+        <span class="data-tag highlight">IBANs</span>
+        <span class="data-tag highlight">API keys</span>
+        <span class="data-tag">National ID numbers</span>
+        <span class="data-tag">Passport numbers</span>
+        <span class="data-tag">Social security numbers</span>
+        <span class="data-tag">IP addresses</span>
+        <span class="data-tag">Dates of birth</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-bg" id="how-it-works">
+    <div class="section">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Three steps.<br>Total protection.</h2>
+      <p class="section-sub">No configuration needed. Install and it just works.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Install the extension</h3>
+          <p>Add AI Data Shield to Chrome from the Web Store. One click, done.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Type normally</h3>
+          <p>Use any AI platform as you normally would. AI Data Shield monitors your input silently in the background.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Send with confidence</h3>
+          <p>Sensitive data is automatically masked before it's sent. Your real information never reaches the AI.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Review your stats</h3>
+          <p>Click the shield icon anytime to see how many items have been protected across all platforms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="section">
+    <p class="section-label">Privacy first</p>
+    <h2 class="section-title">We never see<br>your data.</h2>
+    <p class="section-sub">Every claim below is verifiable. No fine print.</p>
+
+    <div class="privacy-grid">
+      <div class="privacy-item">
+        <span class="privacy-icon">🖥️</span>
+        <div>
+          <h4>100% Local Processing</h4>
+          <p>All detection runs in your browser. No external servers are ever contacted.</p>
+        </div>
+      </div>
+      <div class="privacy-item">
+        <span class="privacy-icon">🚫</span>
+        <div>
+          <h4>No Data Collection</h4>
+          <p>We collect nothing. Not your browsing history, not your messages, not your masked data.</p>
+        </div>
+      </div>
+      <div class="privacy-item">
+        <span class="privacy-icon">🔓</span>
+        <div>
+          <h4>No Account Required</h4>
+          <p>Pay once and it works. No sign-up, no login, no profile.</p>
+        </div>
+      </div>
+      <div class="privacy-item">
+        <span class="privacy-icon">🇪🇺</span>
+        <div>
+          <h4>GDPR Ready</h4>
+          <p>Designed in Germany with European data protection standards built in from day one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="how-bg" id="pricing">
+    <div class="section" style="text-align:center;">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-title" style="margin: 0 auto 1rem;">Simple. Honest.<br>One price.</h2>
+      <p class="section-sub" style="margin: 0 auto 3rem;">No subscriptions. No tiers. No tricks.</p>
+
+      <div class="pricing-card">
+        <div class="pricing-badge">✦ Lifetime Access</div>
+        <div class="price">$29.99</div>
+        <p class="price-note">One-time payment — yours forever</p>
+        <ul class="pricing-features">
+          <li>All AI platforms (ChatGPT, Claude, Gemini, Copilot, Perplexity)</li>
+          <li>All detection patterns — emails, cards, IBANs, API keys & more</li>
+          <li>Configurable pattern settings</li>
+          <li>Detection statistics dashboard</li>
+          <li>All future updates included</li>
+          <li>100% local processing — zero data collection</li>
+          <li>GDPR compliant</li>
+        </ul>
+        <a href="https://chromewebstore.google.com" class="btn-primary" style="width:100%; justify-content:center;">
+          🛡️ Get AI Data Shield — $29.99
+        </a>
+        <p style="margin-top:1rem; font-size:0.82rem; color:var(--muted);">
+          Secure payment via Chrome Web Store
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">🛡️ AI Data Shield</div>
+    <div class="footer-links">
+      <a href="mailto:wiilliamsakintunde@gmail.com">Support</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#how-it-works">How it works</a>
+    </div>
+    <p>© 2026 AI Data Shield · Made in Germany · <a href="mailto:wiilliamsakintunde@gmail.com">wiilliamsakintunde@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>
